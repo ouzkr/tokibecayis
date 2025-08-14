@@ -158,11 +158,6 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
 
         <label>WhatsApp No</label>
         <input type="text" id="whatsapp" placeholder="Örn: 905xxxxxxxxx" required/>
-
-     <!--
-<label>Talep Edilen Fiyat (₺) (opsiyonel)</label>
-<input type="number" id="talep_fiyat" placeholder="Örn: 5.000" min="10000" max="1000000" required oninput="this.value=formatPrice(this.value)" />
--->
       </div>
     </div>
 
@@ -255,7 +250,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
     const talep_ilceler = Array.from(document.querySelectorAll('#talep_ilce_grp input[type=checkbox]:checked')).map(c=>c.value);
     const talep_odalar = Array.from(document.querySelectorAll('#talep_oda_grp input[type=checkbox]:checked')).map(c=>c.value);
     const talep_kat = document.getElementById('talep_kat').value;
-    const talep_fiyat = onlyDigits(document.getElementById('talep_fiyat').value);
+  
 
     if(!ilce){ alert('İlçe seçiniz'); return; }
     if(!mahalle){ alert('Mahalle seçiniz'); return; }
@@ -323,6 +318,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
   </script>
 </body>
 </html>
+
 
 
 
