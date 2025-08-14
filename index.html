@@ -222,71 +222,65 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
 
   // Talep Oluştur
   function createDemand(){
-  // Sol kolon
-  const ilce = document.getElementById('ilce').value;
-  const mahalle = document.getElementById('mahalle').value;
-  const bolge = document.getElementById('bolge').value;
-  const etap = document.getElementById('etap').value;
-  const fiyat = onlyDigits(document.getElementById('fiyat').value);
-  const metrekare = document.getElementById('metrekare').value;
-  const taksit = onlyDigits(document.getElementById('taksit').value);
-  const oda = document.getElementById('oda_sayisi').value;
-  const kat = document.getElementById('kat').value;
+    // Sol kolon
+    const ilce = document.getElementById('ilce').value;
+    const mahalle = document.getElementById('mahalle').value;
+    const bolge = document.getElementById('bolge').value;
+    const etap = document.getElementById('etap').value;
+    const fiyat = onlyDigits(document.getElementById('fiyat').value);
+    const metrekare = document.getElementById('metrekare').value;
+    const taksit = onlyDigits(document.getElementById('taksit').value);
+    const oda = document.getElementById('oda_sayisi').value;
+    const kat = document.getElementById('kat').value;
 
-  // Sağ kolon
-  const whatsapp = sanitizeWhatsapp(document.getElementById('whatsapp').value);
-  const talep_ilceler = Array.from(document.querySelectorAll('#talep_ilce_grp input[type=checkbox]:checked')).map(c => c.value);
-  const talep_odalar = Array.from(document.querySelectorAll('#talep_oda_grp input[type=checkbox]:checked')).map(c => c.value);
-  const talep_kat = document.getElementById('talep_kat').value;
-  const talep_fiyat = onlyDigits(document.getElementById('talep_fiyat').value);
+    // Sağ kolon
+    const whatsapp = sanitizeWhatsapp(document.getElementById('whatsapp').value);
+    const talep_ilceler = Array.from(document.querySelectorAll('#talep_ilce_grp input[type=checkbox]:checked')).map(c=>c.value);
+    const talep_odalar = Array.from(document.querySelectorAll('#talep_oda_grp input[type=checkbox]:checked')).map(c=>c.value);
+    const talep_kat = document.getElementById('talep_kat').value;
+    const talep_fiyat = onlyDigits(document.getElementById('talep_fiyat').value);
 
-  // Zorunlu kontroller
-  if (!ilce) { alert('İlçe seçiniz'); return; }
-  if (!mahalle) { alert('Mahalle seçiniz'); return; }
-  if (!bolge) { alert('Bölge seçiniz'); return; }
-  if (!etap) { alert('Etap seçiniz'); return; }
-  if (!fiyat) { alert('Daire fiyatı zorunludur'); return; }
-  if (!metrekare) { alert('Metrekare giriniz'); return; }
-  if (!taksit) { alert('Taksit giriniz'); return; }
-  if (!oda) { alert('Oda sayısı seçiniz'); return; }
-  if (!kat) { alert('Kat seçiniz'); return; }
-  if (!whatsapp) { alert('WhatsApp numarası zorunludur'); return; }
-  if (!/^905\d{9}$/.test(whatsapp)) {
-    alert('WhatsApp numarası 905 ile başlamalı ve toplam 12 haneli olmalıdır (905 + 9 rakam).');
-    return;
-  }
-  if (talep_ilceler.length === 0) { alert('En az bir Talep İlçe seçiniz'); return; }
-  if (talep_odalar.length === 0) { alert('En az bir Talep Oda Sayısı seçiniz'); return; }
-  if (!talep_kat) { alert('Talep Kat seçiniz'); return; }
+    // Zorunlu kontroller
+    if(!ilce){ alert('İlçe seçiniz'); return; }
+    if(!mahalle){ alert('Mahalle seçiniz'); return; }
+    if(!bolge){ alert('Bölge seçiniz'); return; }
+    if(!etap){ alert('Etap seçiniz'); return; }
+    if(!fiyat){ alert('Daire fiyatı zorunludur'); return; }
+    if(!metrekare){ alert('Metrekare giriniz'); return; }
+    if(!taksit){ alert('Taksit giriniz'); return; }
+    if(!oda){ alert('Oda sayısı seçiniz'); return; }
+    if(!kat){ alert('Kat seçiniz'); return; }
+    if(!whatsapp){ alert('WhatsApp numarası zorunludur'); return; }
+    if(talep_ilceler.length === 0){ alert('En az bir Talep İlçe seçiniz'); return; }
+    if(talep_odalar.length === 0){ alert('En az bir Talep Oda Sayısı seçiniz'); return; }
+    if(!talep_kat){ alert('Talep Kat seçiniz'); return; }
+   
 
-  // Kurallar
-  if (fiyat < 2000000 || fiyat > 10000000) { alert('Daire fiyatı 2.000.000 - 10.000.000 arasında olmalı'); return; }
-  if (taksit < 1000 || taksit > 20000) { alert('Taksit 1.000 - 20.000 arasında olmalı'); return; }
+    // Kurallar
+    if(fiyat < 2000000 || fiyat > 10000000){ alert('Daire fiyatı 2.000.000 - 10.000.000 arasında olmalı'); return; }
+    if(taksit < 1000 || taksit > 20000){ alert('Taksit 1.000 - 20.000 arasında olmalı'); return; }
 
-  const demand = {
-    ilce, mahalle, bolge, etap,
-    fiyat: Number(fiyat),
-    metrekare: Number(metrekare),
-    taksit: Number(taksit),
-    oda, kat,
-    whatsapp,
-    talep_ilceler, talep_odalar,
-    talep_kat,
-    talep_fiyat: Number(talep_fiyat),
-    createdAt: Date.now()
-  };
+    const demand = {
+      ilce, mahalle, bolge, etap,
+      fiyat: Number(fiyat),
+      metrekare: Number(metrekare),
+      taksit: Number(taksit),
+      oda, kat,
+      whatsapp,
+      talep_ilceler, talep_odalar,
+      talep_kat,
+      talep_fiyat: Number(talep_fiyat),
+      createdAt: Date.now()
+    };
 
-  demandsRef.push(demand)
-    .then(() => {
-      closeWarningModal();
-      alert('Talep oluşturuldu!');
-    })
-    .catch(err => {
-      console.error(err);
-      alert('Kaydederken bir hata oluştu. Lütfen tekrar deneyin.');
-    });
-}
-
+    demandsRef.push(demand)
+      .then(()=>{
+        closeWarningModal();
+        alert('Talep oluşturuldu!');
+      })
+      .catch(err=>{
+        console.error(err);
+        alert('Kaydederken bir hata oluştu. Lütfen tekrar deneyin.');
       });
   }
 
@@ -310,9 +304,5 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
   </script>
 </body>
 </html>
-
-
-
-
 
 
