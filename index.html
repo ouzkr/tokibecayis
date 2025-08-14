@@ -198,18 +198,19 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
 
   <script>
   // —— Firebase Config (BURAYI KENDİ DEĞERLERİNLE DOLDUR) ——
-  const firebaseConfig = {
-    apiKey: "FIREBASE_API_KEY",
-    authDomain: "FIREBASE_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://FIREBASE_PROJECT_ID-default-rtdb.firebaseio.com",
-    projectId: "FIREBASE_PROJECT_ID",
-    storageBucket: "FIREBASE_PROJECT_ID.appspot.com",
-    messagingSenderId: "FIREBASE_SENDER_ID",
-    appId: "FIREBASE_APP_ID"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-  const demandsRef = db.ref("demands");
+ const firebaseConfig = {
+  apiKey: "AIzaSyDMHk5EugSyBbFioJrEMqL8OcuuFgxCguU",
+  authDomain: "toki-8eb5b.firebaseapp.com",
+  databaseURL: "https://toki-8eb5b-default-rtdb.firebaseio.com",
+  projectId: "toki-8eb5b",
+  storageBucket: "toki-8eb5b.appspot.com",
+  messagingSenderId: "267049783849",
+  appId: "1:267049783849:web:2fa3f0b70a98e230f8c238"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const demandsRef = db.ref("demands");
+
 
   // —— UI Yardımcıları ——
   function showWarningModal(){ document.getElementById('warningModal').style.display='flex'; }
@@ -333,6 +334,7 @@ function formatPrice(value) {
 </script>
 </body>
 </html>
+
 
 
 
