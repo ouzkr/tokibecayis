@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="tr">
 <head>
 <meta charset="UTF-8" />
@@ -132,7 +132,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
       </div>
 
       <!-- Sağ kolon — Talep Edilen -->
-      <div class="form-group" id="rightForm">
+      <div class.class="form-group" id="rightForm">
         <h3>Talep Edilen (Aranan Özellikler)</h3>
 
         <label>Talep Edilen İlçe</label>
@@ -205,7 +205,9 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
     messagingSenderId: "267049783849",
     appId: "1:267049783849:web:2fa3f0b70a98e230f8c238"
   };
-  firebase.initializeApp(firebaseConfig);
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
   const db = firebase.database();
   const demandsRef = db.ref("demands");
 
@@ -277,7 +279,6 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
       whatsapp,
       talep_ilceler, talep_odalar,
       talep_kat,
-      talep_fiyat: Number(talep_fiyat),
       createdAt: Date.now()
     };
 
@@ -305,11 +306,11 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
 
       tr.innerHTML = `
         <td>${dateStr}</td>
-        <td>${d.ilce}</td><td>${d.mahalle}</td><td>${d.bolge}</td><td>${d.etap}</td>
-        <td>${d.fiyat.toLocaleString()}</td><td>${d.metrekare}</td><td>${d.taksit.toLocaleString()}</td>
-        <td>${d.oda}</td><td>${d.kat}</td>
+        <td>${d.ilce || ''}</td><td>${d.mahalle || ''}</td><td>${d.bolge || ''}</td><td>${d.etap || ''}</td>
+        <td>${(d.fiyat || 0).toLocaleString()}</td><td>${(d.metrekare || 0)}</td><td>${(d.taksit || 0).toLocaleString()}</td>
+        <td>${d.oda || ''}</td><td>${d.kat || ''}</td>
         <td><a class="whatsapp-link" href="https://wa.me/${d.whatsapp}" target="_blank">Mesaj Yaz</a></td>
-        <td>${d.talep_ilceler.join(', ')}</td><td>${d.talep_odalar.join(', ')}</td><td>${d.talep_kat}</td>
+        <td>${(d.talep_ilceler || []).join(', ')}</td><td>${(d.talep_odalar || []).join(', ')}</td><td>${d.talep_kat || ''}</td>
       `;
       // En üste ekle
       tbody.prepend(tr);
@@ -318,11 +319,3 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
