@@ -102,8 +102,10 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
           <option>5</option><option>6</option><option>7</option><option>-</option>
         </select>
 
-        <label>Daire Fiyatı (₺)</label>
-         <input type="number" id="fiyat" placeholder="Örn: 2500000" oninput="this.value=formatPrice(this.value)" />
+      <label>Daire Fiyatı (₺)</label>
+      <input type="text" id="fiyat" placeholder="Örn: 2.500.000" 
+      oninput="this.value = formatPrice(this.value)" />
+
 
 
         <label>Net Metrekare (m²)</label>
@@ -315,8 +317,23 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
 
   // Modal butonları (güvenlik uyarısı)
   </script>
+  <script>
+function formatPrice(value) {
+    // Rakam olmayan karakterleri kaldır
+    let numbers = value.replace(/\D/g, '');
+
+    // Maksimum 10 milyon sınırı
+    if (parseInt(numbers) > 10000000) {
+        numbers = '10000000';
+    }
+
+    // Her 3 hanede bir nokta ekle
+    return numbers.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+</script>
 </body>
 </html>
+
 
 
 
