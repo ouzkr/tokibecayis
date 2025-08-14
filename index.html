@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TOKİ Takas / Becayiş Sitesi</title>
+<style>
+  :root{
+    --glass: rgba(255,255,255,0.12);
+    --glass-strong: rgba(255,255,255,0.18);
+    --text: #ffffff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    color: var(--text);
+    background: linear-gradient(135deg, #00c6ff, #0072ff) fixed;
+    min-height:100vh;
+  }
+  header{
+    text-align:center;
+    padding:24px 16px;
+    background: rgba(0,0,0,0.28);
+    position:sticky; top:0; z-index:10;
+    backdrop-filter: blur(6px);
+  }
+  h1{
+    margin:0 0 6px 0;
+    font-size: clamp(24px, 4vw, 36px);
+    display:flex; gap:12px; align-items:center; justify-content:center;
+  }
+  h1 img{width:40px; height:40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,.4));}
+  header p{margin:0; opacity:.9}
+  .container{max-width:1000px; margin:20px auto; padding:0 16px;}
+  form{
+    background: var(--glass);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius:14px;
+    padding:16px;
+    backdrop-filter: blur(6px);
+  }
+  .form-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:16px;
+  }
+  @media (min-width:860px){
+    .form-grid{grid-template-columns: 1fr 1fr;}
+  }
+  .col{
+    background: var(--glass-strong);
+    border-radius:12px;
+    padding:14px;
+  }
+  .col h3{
+    margin:4px 0 10px 0;
+    font-size:18px;
+    text-align:center;
+    border-bottom:1px solid rgba(255,255,255,.25);
+    padding-bottom:6px;
+  }
+  label{display:block; font-weight:600; margin:10px 0 4px}
+  input{
+    width:100%; padding:10px 12px; border-radius:8px; border:none;
+    outline:none; background: rgba(255,255,255,0.9); color:#111;
+  }
+  .submit-wrap{grid-column:1 / -1}
+  button{
+    width:100%; padding:12px 16px; font-weight:800; letter-spacing:.2px;
+    border:none; border-radius:10px; cursor:pointer;
+    color:#fff;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, purple);
+    background-size: 600% 600%; animation: rgbMove 8s ease infinite;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  }
+  button:hover{transform: translateY(-1px)}
+  @keyframes rgbMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+  .list{
+    margin-top:20px;
+    display:grid; gap:14px;
+  }
+  .card{
+    background: var(--glass);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:14px; padding:14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  }
+  .card-title{font-size:18px; font-weight:700; margin-bottom:10px}
+  .card-grid{
+    display:grid; gap:12px; grid-template-columns: 1fr;
+  }
+  @media (min-width:720px){
+    .card-grid{grid-template-columns: 1fr 1fr;}
+  }
+  .card-block{
+    background: rgba(255,255,255,.12);
+    border-radius:10px; padding:10px;
+  }
+  .small{opacity:.9; font-size:13px}
+  .actions{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap}
+  .wa{
+    background: linear-gradient(90deg, #25D366, #128C7E, #075E54);
+    background-size: 300% 300%; animation: rgbMove 7s ease infinite;
+  }
+  .ghost{
+    background: rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.25);
+  }
+  .muted{opacity:.85}
+  footer{padding:30px 16px; text-align:center; opacity:.85}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/69/69524.png" alt="Ev">
+    TOKİ Takas / Becayiş Sitesi
+  </h1>
+  <p>Daireni takas et, talebine uyan eşleşmeleri hemen WhatsApp ile konuş!</p>
+</header>
+
+<div class="container">
+  <!-- FORM -->
+  <form id="listingForm" autocomplete="on">
+    <div class="form-grid">
+      <!-- Sol: Hak Sahibi -->
+      <div class="col">
+        <h3>Hak Sahibi (Mevcut Daire)</h3>
+        <label>İlçe</label>
+        <input type="text" id="ilce" name="ilce" placeholder="Örn: Arnavutköy" required>
+
+        <label>Etap</label>
+        <input type="text" id="etap" name="etap" placeholder="Örn: 1. Etap" required>
+
+        <label>Bölge</label>
+        <input type="text" id="bolge" name="bolge" placeholder="Örn: 1. Bölge" required>
+
+        <label>Fiyat (₺)</label>
+        <input type="number" id="fiyat" name="fiyat" min="0" step="1000" placeholder="Örn: 1500000" required>
+
+        <label>Metrekare (m²)</label>
+        <input type="number" id="metrekare" name="metrekare" min="0" step="1" placeholder="Örn: 85" required>
+
+        <label>Taksit (₺)</label>
+        <input type="number" id="taksit" name="taksit" min="0" step="1" placeholder="Örn: 12500" required>
+
+        <label>Oda Sayısı</label>
+        <input type="text" id="oda" name="oda" placeholder="Örn: 2+1" required>
+
+        <label>Kat</label>
+        <input type="text" id="kat" name="kat" placeholder="Örn: 3" required>
+
+        <label>İlan Sahibi WhatsApp Numarası</label>
+        <input type="tel" id="whats" name="whats" placeholder="Örn: 05xx xxx xx xx" required>
+        <div class="small muted">Not: Numaranız yalnızca “Kabul Ediyorum” diyenlerle WhatsApp görüşmesi başlatmak için kullanılır.</div>
+      </div>
+
+      <!-- Sağ: Talep -->
+      <div class="col">
+        <h3>Talep Edilen (Aranan Özellikler)</h3>
+        <label>Talep Edilen İlçe</label>
+        <input type="text" id="talepIlce" name="talepIlce" placeholder="Örn: Başakşehir" required>
+
+        <label>Talep Edilen Oda Sayısı</label>
+        <input type="text" id="talepOda" name="talepOda" placeholder="Örn: 2+1" required>
+
+        <label>Talep Edilen Kat</label>
+        <input type="text" id="talepKat" name="talepKat" placeholder="Örn: 1-5" required>
+
+        <label>Talep Edilen Fiyat (₺)</label>
+        <input type="number" id="talepFiyat" name="talepFiyat" min="0" step="1000" placeholder="Örn: 1500000" required>
+
+        <div class="submit-wrap">
+          <button type="submit" title="Talebi ekle">Talep Oluştur</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- LİSTE -->
+  <div class="list" id="listings"></div>
+
+  <footer>
+    <div class="small">© <span id="year"></span> TOKİ Takas / Becayiş — Basit demo. Veriler tarayıcı belleğindedir.</div>
+  </footer>
+</div>
+
+<script>
+  const form = document.getElementById('listingForm');
+  const listEl = document.getElementById('listings');
+  const yearEl = document.getElementById('year');
+  yearEl.textContent = new Date().getFullYear();
+
+  /** Basit bellek – istersen localStorage eklenebilir */
+  let listings = [];
+
+  /** TR numarayı 90’lı E.164 formatına çevirir */
+  function normalizePhoneTR(input){
+    if(!input) return "";
+    const digits = input.replace(/\D+/g,''); // sadece rakam
+    if(digits.startsWith('90') && digits.length === 12) return digits;          // 90XXXXXXXXXX
+    if(digits.startsWith('0') && digits.length === 11) return '90' + digits.slice(1); // 0XXXXXXXXXX
+    if(digits.length === 10) return '90' + digits;                               // 5XXXXXXXXX
+    // diğer durumlarda olduğu gibi döndür (ör: farklı ülke)
+    return digits;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const yeni = {
+      ilce: ilce.value.trim(),
+      etap: etap.value.trim(),
+      bolge: bolge.value.trim(),
+      fiyat: Number(fiyat.value || 0),
+      metrekare: Number(metrekare.value || 0),
+      taksit: Number(taksit.value || 0),
+      oda: oda.value.trim(),
+      kat: kat.value.trim(),
+      talepIlce: talepIlce.value.trim(),
+      talepOda: talepOda.value.trim(),
+      talepKat: talepKat.value.trim(),
+      talepFiyat: Number(talepFiyat.value || 0),
+      phoneRaw: whats.value.trim(),
+      phone: normalizePhoneTR(whats.value.trim()),
+      createdAt: new Date().toISOString()
+    };
+
+    // basit doğrulama
+    if(!yeni.phone){
+      alert("Lütfen geçerli bir WhatsApp numarası girin.");
+      return;
+    }
+
+    listings.unshift(yeni);
+    render();
+    form.reset();
+  });
+
+  function tl(n){ try{ return new Intl.NumberFormat('tr-TR').format(Number(n||0)); }catch{ return n; } }
+
+  function render(){
+    listEl.innerHTML = '';
+    if(listings.length === 0){
+      const empty = document.createElement('div');
+      empty.className = 'card';
+      empty.innerHTML = '<div class="muted">Henüz talep yok. Formdan ilk talebi oluştur.</div>';
+      listEl.appendChild(empty);
+      return;
+    }
+
+    listings.forEach((t, idx)=>{
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const title = document.createElement('div');
+      title.className = 'card-title';
+      title.textContent = `${t.ilce} • ${t.etap} • ${t.bolge}`;
+      card.appendChild(title);
+
+      const grid = document.createElement('div');
+      grid.className = 'card-grid';
+
+      const left = document.createElement('d
