@@ -159,8 +159,10 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
         <label>WhatsApp No</label>
         <input type="text" id="whatsapp" placeholder="Örn: 905xxxxxxxxx" required/>
 
-        <label>Talep Edilen Fiyat (₺) (opsiyonel)</label>
-        <input type="number" id="talep_fiyat" placeholder="Örn: 5.000" min="10000" max="1000000" required oninput="this.value=formatPrice(this.value)" />
+     <!--
+<label>Talep Edilen Fiyat (₺) (opsiyonel)</label>
+<input type="number" id="talep_fiyat" placeholder="Örn: 5.000" min="10000" max="1000000" required oninput="this.value=formatPrice(this.value)" />
+-->
       </div>
     </div>
 
@@ -174,7 +176,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
             <th>Tarih / Saat</th>
             <th>İlçe</th><th>Mahalle</th><th>Bölge</th><th>Etap</th>
             <th>Daire Fiyatı</th><th>Metrekare</th><th>Taksit</th><th>Oda Sayısı</th><th>Kat</th><th>WhatsApp</th>
-            <th>Talep İlçe</th><th>Talep Oda Sayısı</th><th>Talep Kat</th><th>Talep Fiyat</th>
+            <th>Talep İlçe</th><th>Talep Oda Sayısı</th><th>Talep Kat</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -312,7 +314,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
         <td>${d.fiyat.toLocaleString()}</td><td>${d.metrekare}</td><td>${d.taksit.toLocaleString()}</td>
         <td>${d.oda}</td><td>${d.kat}</td>
         <td><a class="whatsapp-link" href="https://wa.me/${d.whatsapp}" target="_blank">Mesaj Yaz</a></td>
-        <td>${d.talep_ilceler.join(', ')}</td><td>${d.talep_odalar.join(', ')}</td><td>${d.talep_kat}</td><td>${d.talep_fiyat.toLocaleString()}</td>
+        <td>${d.talep_ilceler.join(', ')}</td><td>${d.talep_odalar.join(', ')}</td><td>${d.talep_kat}</td>
       `;
       // En üste ekle
       tbody.prepend(tr);
@@ -321,6 +323,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
   </script>
 </body>
 </html>
+
 
 
 
