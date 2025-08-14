@@ -6,7 +6,7 @@
 <title>TOKİ Takas / Becayiş Sitesi</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 <style>
-/* ——— Stil (senin son doğruladığın görsel dil korunarak) ——— */
+/* Stil */
 body{font-family:'Roboto',sans-serif;margin:0;background:linear-gradient(120deg,#1e3a8a,#7e22ce);color:#1f2937;min-height:100vh;display:flex;flex-direction:column;}
 .container{max-width:1300px;margin:20px auto;padding:15px;background:#fff;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,.15);display:flex;flex-wrap:wrap;gap:20px;}
 h1{text-align:center;color:#1e3a8a;font-size:1.5em;margin-bottom:10px;letter-spacing:.5px;}
@@ -67,7 +67,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
       <div class="form-group" id="leftForm">
         <h3>Hak Sahibi (Mevcut Daire)</h3>
         <label>İlçe</label>
-        <select id="ilce">
+        <select id="ilce" required>
           <option value="">Seçiniz</option>
           <option value="TUZLA">TUZLA</option>
           <option value="MALTEPE">MALTEPE</option>
@@ -76,7 +76,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
         </select>
 
         <label>Mahalle</label>
-        <select id="mahalle">
+        <select id="mahalle" required>
           <option value="">Seçiniz</option>
           <option>AYDINLI</option>
           <option>ORHANLI</option>
@@ -89,40 +89,38 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
         </select>
 
         <label>Bölge</label>
-        <select id="bolge">
+        <select id="bolge" required>
           <option value="">Seçiniz</option>
           <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
           <option>10</option><option>11</option><option>BATI</option><option>-</option>
         </select>
 
         <label>Etap</label>
-        <select id="etap">
+        <select id="etap" required>
           <option value="">Seçiniz</option>
           <option>1</option><option>2</option><option>3</option><option>4</option>
           <option>5</option><option>6</option><option>7</option><option>-</option>
         </select>
 
-      <label>Daire Fiyatı (₺)</label>
-      <input type="text" id="fiyat" placeholder="Örn: 2.500.000" 
-      oninput="this.value = formatPrice(this.value)" />
-
-
+        <label>Daire Fiyatı (₺)</label>
+        <input type="text" id="fiyat" placeholder="Örn: 2.500.000" required
+        oninput="this.value = formatPrice(this.value)" />
 
         <label>Net Metrekare (m²)</label>
-        <input type="number" id="metrekare" placeholder="Örn: 85" min="50" max="200" />
+        <input type="number" id="metrekare" placeholder="Örn: 85" min="50" max="200" required/>
 
         <label>Taksit (₺)</label>
-        <input type="number" id="taksit" placeholder="Örn: 5000" min="1000" max="20000" oninput="this.value=formatPrice(this.value)" />
+        <input type="number" id="taksit" placeholder="Örn: 5000" min="1000" max="20000" required oninput="this.value=formatPrice(this.value)" />
 
         <label>Oda Sayısı</label>
-        <select id="oda_sayisi">
+        <select id="oda_sayisi" required>
           <option value="">Seçiniz</option>
           <option>2+1</option>
           <option>3+1</option>
         </select>
 
         <label>Kat</label>
-        <select id="kat">
+        <select id="kat" required>
           <option value="">Seçiniz</option>
           <option>Bodrum</option><option>Zemin</option><option>Giriş</option>
           <option>1.kat</option><option>2.kat</option><option>3.kat</option><option>4.kat</option><option>5.kat</option>
@@ -149,17 +147,17 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
         </div>
 
         <label>Talep Edilen Kat</label>
-        <select id="talep_kat">
-          <option value="">Farketmez</option>
+        <select id="talep_kat" required>
+          <option value="">Seçiniz</option>
           <option>1.kat ve arakatlar</option>
           <option>Üst katlar</option>
         </select>
 
         <label>WhatsApp No</label>
-        <input type="text" id="whatsapp" placeholder="Örn: 905xxxxxxxxx" />
+        <input type="text" id="whatsapp" placeholder="Örn: 905xxxxxxxxx" required/>
 
-        <label>Talep Edilen Fiyat (Opsiyonel ₺)</label>
-        <input type="number" id="talep_fiyat" placeholder="Örn: 5.000" min="10000" max="1000000" oninput="this.value=formatPrice(this.value)" />
+        <label>Talep Edilen Fiyat (₺)</label>
+        <input type="number" id="talep_fiyat" placeholder="Örn: 5.000" min="10000" max="1000000" required oninput="this.value=formatPrice(this.value)" />
       </div>
     </div>
 
@@ -197,22 +195,20 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
   <script>
-  // —— Firebase Config (BURAYI KENDİ DEĞERLERİNLE DOLDUR) ——
- const firebaseConfig = {
-  apiKey: "AIzaSyDMHk5EugSyBbFioJrEMqL8OcuuFgxCguU",
-  authDomain: "toki-8eb5b.firebaseapp.com",
-  databaseURL: "https://toki-8eb5b-default-rtdb.firebaseio.com",
-  projectId: "toki-8eb5b",
-  storageBucket: "toki-8eb5b.appspot.com",
-  messagingSenderId: "267049783849",
-  appId: "1:267049783849:web:2fa3f0b70a98e230f8c238"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-const demandsRef = db.ref("demands");
+  const firebaseConfig = {
+    apiKey: "AIzaSyDMHk5EugSyBbFioJrEMqL8OcuuFgxCguU",
+    authDomain: "toki-8eb5b.firebaseapp.com",
+    databaseURL: "https://toki-8eb5b-default-rtdb.firebaseio.com",
+    projectId: "toki-8eb5b",
+    storageBucket: "toki-8eb5b.appspot.com",
+    messagingSenderId: "267049783849",
+    appId: "1:267049783849:web:2fa3f0b70a98e230f8c238"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+  const demandsRef = db.ref("demands");
 
-
-  // —— UI Yardımcıları ——
+  // Yardımcı Fonksiyonlar
   function showWarningModal(){ document.getElementById('warningModal').style.display='flex'; }
   function closeWarningModal(){ document.getElementById('warningModal').style.display='none'; }
   function onlyDigits(s){ return (s||"").toString().replace(/\D/g,''); }
@@ -222,54 +218,65 @@ const demandsRef = db.ref("demands");
     num = Math.max(0, Math.min(10000000000, Number(num))).toString();
     return num.replace(/\B(?=(\d{3})+(?!\d))/g,'.');
   }
-  function sanitizeWhatsapp(v){
-    // sadece rakam, baştaki 0'ları gereksizse kırp
-    const d = onlyDigits(v);
-    return d;
-  }
+  function sanitizeWhatsapp(v){ return onlyDigits(v); }
 
-  // —— Talep Kaydet ——
+  // Talep Oluştur
   function createDemand(){
-    // sağ kolon (checkbox) verileri
-    const talep_ilceler = Array.from(document.querySelectorAll('#talep_ilce_grp input[type=checkbox]:checked')).map(c=>c.value);
-    const talep_odalar  = Array.from(document.querySelectorAll('#talep_oda_grp input[type=checkbox]:checked')).map(c=>c.value);
-
+    // Sol kolon
+    const ilce = document.getElementById('ilce').value;
+    const mahalle = document.getElementById('mahalle').value;
+    const bolge = document.getElementById('bolge').value;
+    const etap = document.getElementById('etap').value;
     const fiyat = onlyDigits(document.getElementById('fiyat').value);
+    const metrekare = document.getElementById('metrekare').value;
     const taksit = onlyDigits(document.getElementById('taksit').value);
-    const talep_fiyat = onlyDigits(document.getElementById('talep_fiyat').value);
-    const whatsapp = sanitizeWhatsapp(document.getElementById('whatsapp').value);
+    const oda = document.getElementById('oda_sayisi').value;
+    const kat = document.getElementById('kat').value;
 
-    // Kurallar (senin istediğin min/max)
+    // Sağ kolon
+    const whatsapp = sanitizeWhatsapp(document.getElementById('whatsapp').value);
+    const talep_ilceler = Array.from(document.querySelectorAll('#talep_ilce_grp input[type=checkbox]:checked')).map(c=>c.value);
+    const talep_odalar = Array.from(document.querySelectorAll('#talep_oda_grp input[type=checkbox]:checked')).map(c=>c.value);
+    const talep_kat = document.getElementById('talep_kat').value;
+    const talep_fiyat = onlyDigits(document.getElementById('talep_fiyat').value);
+
+    // Zorunlu kontroller
+    if(!ilce){ alert('İlçe seçiniz'); return; }
+    if(!mahalle){ alert('Mahalle seçiniz'); return; }
+    if(!bolge){ alert('Bölge seçiniz'); return; }
+    if(!etap){ alert('Etap seçiniz'); return; }
+    if(!fiyat){ alert('Daire fiyatı zorunludur'); return; }
+    if(!metrekare){ alert('Metrekare giriniz'); return; }
+    if(!taksit){ alert('Taksit giriniz'); return; }
+    if(!oda){ alert('Oda sayısı seçiniz'); return; }
+    if(!kat){ alert('Kat seçiniz'); return; }
+    if(!whatsapp){ alert('WhatsApp numarası zorunludur'); return; }
+    if(talep_ilceler.length === 0){ alert('En az bir Talep İlçe seçiniz'); return; }
+    if(talep_odalar.length === 0){ alert('En az bir Talep Oda Sayısı seçiniz'); return; }
+    if(!talep_kat){ alert('Talep Kat seçiniz'); return; }
+    if(!talep_fiyat){ alert('Talep Fiyat giriniz'); return; }
+
+    // Kurallar
     if(fiyat < 2000000 || fiyat > 10000000){ alert('Daire fiyatı 2.000.000 - 10.000.000 arasında olmalı'); return; }
     if(taksit < 1000 || taksit > 20000){ alert('Taksit 1.000 - 20.000 arasında olmalı'); return; }
-    if(!whatsapp){ alert('WhatsApp numarası zorunludur'); return; }
 
     const demand = {
-      ilce: document.getElementById('ilce').value || '',
-      mahalle: document.getElementById('mahalle').value || '',
-      bolge: document.getElementById('bolge').value || '',
-      etap: document.getElementById('etap').value || '',
+      ilce, mahalle, bolge, etap,
       fiyat: Number(fiyat),
-      metrekare: Number(document.getElementById('metrekare').value || 0),
+      metrekare: Number(metrekare),
       taksit: Number(taksit),
-      oda: document.getElementById('oda_sayisi').value || '',
-      kat: document.getElementById('kat').value || '',
-      whatsapp: whatsapp,
-      talep_ilceler: talep_ilceler,
-      talep_odalar: talep_odalar,
-      talep_kat: document.getElementById('talep_kat').value || '',
-      talep_fiyat: talep_fiyat ? Number(talep_fiyat) : null,
+      oda, kat,
+      whatsapp,
+      talep_ilceler, talep_odalar,
+      talep_kat,
+      talep_fiyat: Number(talep_fiyat),
       createdAt: Date.now()
     };
 
-    // Firebase'e yaz
     demandsRef.push(demand)
       .then(()=>{
         closeWarningModal();
         alert('Talep oluşturuldu!');
-        // formu istersen temizleyebilirsin:
-        // document.querySelectorAll('input').forEach(i=>i.value='');
-        // document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=false);
       })
       .catch(err=>{
         console.error(err);
@@ -277,66 +284,23 @@ const demandsRef = db.ref("demands");
       });
   }
 
-  // —— Tabloya satır ekleme (tek kaynak) ——
-  function appendRow(demand){
+  // Talepleri Tabloya Çek
+  demandsRef.on('value', snapshot => {
     const tbody = document.querySelector('#demandsTable tbody');
-    const tr = document.createElement('tr');
-
-    const wp = demand.whatsapp ? `https://wa.me/${demand.whatsapp}?text=${encodeURIComponent('Merhaba, TOKİ takas ilanınızla ilgileniyorum.')}` : '';
-    const wpHtml = demand.whatsapp ? `<a class="whatsapp-link" target="_blank" href="${wp}">Mesaj Gönder</a>` : '-';
-
-    const fmt = n => n!=null && n!=='' ? formatPrice(String(n)) : '-';
-
-    tr.innerHTML = `
-      <td>${demand.ilce||'-'}</td>
-      <td>${demand.mahalle||'-'}</td>
-      <td>${demand.bolge||'-'}</td>
-      <td>${demand.etap||'-'}</td>
-      <td>${fmt(demand.fiyat)}</td>
-      <td>${demand.metrekare? demand.metrekare : '-'}</td>
-      <td>${fmt(demand.taksit)}</td>
-      <td>${demand.oda||'-'}</td>
-      <td>${demand.kat||'-'}</td>
-      <td>${wpHtml}</td>
-      <td>${Array.isArray(demand.talep_ilceler)&&demand.talep_ilceler.length? demand.talep_ilceler.join(', ') : '-'}</td>
-      <td>${Array.isArray(demand.talep_odalar)&&demand.talep_odalar.length? demand.talep_odalar.join(', ') : '-'}</td>
-      <td>${demand.talep_kat||'Farketmez'}</td>
-      <td>${demand.talep_fiyat? fmt(demand.talep_fiyat) : '-'}</td>
-    `;
-    tbody.appendChild(tr);
-  }
-
-  // —— Canlı Listeleme ——
-  // Sayfa açıldığında son 200 kaydı çek; sonra child_added ile canlı ekle
-  demandsRef
-    .orderByChild('createdAt')
-    .limitToLast(200)
-    .on('child_added', snap => {
-      const demand = snap.val() || {};
-      appendRow(demand);
+    tbody.innerHTML = '';
+    snapshot.forEach(snap=>{
+      const d = snap.val();
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${d.ilce}</td><td>${d.mahalle}</td><td>${d.bolge}</td><td>${d.etap}</td>
+        <td>${d.fiyat.toLocaleString()}</td><td>${d.metrekare}</td><td>${d.taksit.toLocaleString()}</td>
+        <td>${d.oda}</td><td>${d.kat}</td>
+        <td><a class="whatsapp-link" href="https://wa.me/${d.whatsapp}" target="_blank">Chat</a></td>
+        <td>${d.talep_ilceler.join(', ')}</td><td>${d.talep_odalar.join(', ')}</td><td>${d.talep_kat}</td><td>${d.talep_fiyat.toLocaleString()}</td>
+      `;
+      tbody.appendChild(tr);
     });
-
-  // Modal butonları (güvenlik uyarısı)
+  });
   </script>
-  <script>
-function formatPrice(value) {
-    // Rakam olmayan karakterleri kaldır
-    let numbers = value.replace(/\D/g, '');
-
-    // Maksimum 10 milyon sınırı
-    if (parseInt(numbers) > 10000000) {
-        numbers = '10000000';
-    }
-
-    // Her 3 hanede bir nokta ekle
-    return numbers.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-}
-</script>
 </body>
 </html>
-
-
-
-
-
-
