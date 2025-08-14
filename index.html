@@ -304,12 +304,13 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
         <td><a class="whatsapp-link" href="https://wa.me/${d.whatsapp}" target="_blank">Mesaj Yaz</a></td>
         <td>${d.talep_ilceler.join(', ')}</td><td>${d.talep_odalar.join(', ')}</td><td>${d.talep_kat}</td><td>${d.talep_fiyat.toLocaleString()}</td>
       `;
-      tbody.appendChild(tr);
+      tbody.insertBefore(tr, tbody.firstChild);
     });
   });
   </script>
 </body>
 </html>
+
 
 
 
