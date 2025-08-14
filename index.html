@@ -103,8 +103,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
         </select>
 
         <label>Daire Fiyatı (₺)</label>
-        <input type="text" id="fiyat" placeholder="Örn: 2.500.000" required
-        oninput="this.value = formatPrice(this.value)" />
+        <input type="text" id="fiyat" placeholder="Örn: 2.500.000" required oninput="this.value = formatPrice(this.value)" />
 
         <label>Net Metrekare (m²)</label>
         <input type="number" id="metrekare" placeholder="Örn: 85" min="50" max="200" required/>
@@ -168,6 +167,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
       <table id="demandsTable">
         <thead>
           <tr>
+            <th>Tarih / Saat</th>
             <th>İlçe</th><th>Mahalle</th><th>Bölge</th><th>Etap</th>
             <th>Daire Fiyatı</th><th>Metrekare</th><th>Taksit</th><th>Oda Sayısı</th><th>Kat</th><th>WhatsApp</th>
             <th>Talep İlçe</th><th>Talep Oda Sayısı</th><th>Talep Kat</th><th>Talep Fiyat</th>
@@ -218,11 +218,21 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
     num = Math.max(0, Math.min(10000000000, Number(num))).toString();
     return num.replace(/\B(?=(\d{3})+(?!\d))/g,'.');
   }
-  function sanitizeWhatsapp(v){ return onlyDigits(v); }
+
+  function sanitizeWhatsapp(v){
+    let num = onlyDigits(v);
+    if(!num.startsWith('905')){
+        num = '905' + num;
+    }
+    if(num.length !== 12){
+        alert('WhatsApp numarası 12 rakam olmalı (başında 905 dahil). Lütfen düzeltin.');
+        return null;
+    }
+    return num;
+  }
 
   // Talep Oluştur
   function createDemand(){
-    // Sol kolon
     const ilce = document.getElementById('ilce').value;
     const mahalle = document.getElementById('mahalle').value;
     const bolge = document.getElementById('bolge').value;
@@ -233,14 +243,14 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
     const oda = document.getElementById('oda_sayisi').value;
     const kat = document.getElementById('kat').value;
 
-    // Sağ kolon
     const whatsapp = sanitizeWhatsapp(document.getElementById('whatsapp').value);
+    if(!whatsapp) return;
+
     const talep_ilceler = Array.from(document.querySelectorAll('#talep_ilce_grp input[type=checkbox]:checked')).map(c=>c.value);
     const talep_odalar = Array.from(document.querySelectorAll('#talep_oda_grp input[type=checkbox]:checked')).map(c=>c.value);
     const talep_kat = document.getElementById('talep_kat').value;
     const talep_fiyat = onlyDigits(document.getElementById('talep_fiyat').value);
 
-    // Zorunlu kontroller
     if(!ilce){ alert('İlçe seçiniz'); return; }
     if(!mahalle){ alert('Mahalle seçiniz'); return; }
     if(!bolge){ alert('Bölge seçiniz'); return; }
@@ -250,13 +260,10 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
     if(!taksit){ alert('Taksit giriniz'); return; }
     if(!oda){ alert('Oda sayısı seçiniz'); return; }
     if(!kat){ alert('Kat seçiniz'); return; }
-    if(!whatsapp){ alert('WhatsApp numarası zorunludur'); return; }
     if(talep_ilceler.length === 0){ alert('En az bir Talep İlçe seçiniz'); return; }
     if(talep_odalar.length === 0){ alert('En az bir Talep Oda Sayısı seçiniz'); return; }
     if(!talep_kat){ alert('Talep Kat seçiniz'); return; }
-   
 
-    // Kurallar
     if(fiyat < 2000000 || fiyat > 10000000){ alert('Daire fiyatı 2.000.000 - 10.000.000 arasında olmalı'); return; }
     if(taksit < 1000 || taksit > 20000){ alert('Taksit 1.000 - 20.000 arasında olmalı'); return; }
 
@@ -284,25 +291,29 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
       });
   }
 
-  // Talepleri Tabloya Çek
+  // Talepleri Tabloya Çek (En üste ekle)
   demandsRef.on('value', snapshot => {
     const tbody = document.querySelector('#demandsTable tbody');
     tbody.innerHTML = '';
     snapshot.forEach(snap=>{
       const d = snap.val();
       const tr = document.createElement('tr');
+
+      const date = new Date(d.createdAt);
+      const dateStr = date.toLocaleDateString('tr-TR') + ' ' + date.toLocaleTimeString('tr-TR');
+
       tr.innerHTML = `
+        <td>${dateStr}</td>
         <td>${d.ilce}</td><td>${d.mahalle}</td><td>${d.bolge}</td><td>${d.etap}</td>
         <td>${d.fiyat.toLocaleString()}</td><td>${d.metrekare}</td><td>${d.taksit.toLocaleString()}</td>
         <td>${d.oda}</td><td>${d.kat}</td>
         <td><a class="whatsapp-link" href="https://wa.me/${d.whatsapp}" target="_blank">Mesaj Yaz</a></td>
         <td>${d.talep_ilceler.join(', ')}</td><td>${d.talep_odalar.join(', ')}</td><td>${d.talep_kat}</td><td>${d.talep_fiyat.toLocaleString()}</td>
       `;
-      tbody.appendChild(tr);
+      // En üste ekle
+      tbody.prepend(tr);
     });
   });
   </script>
 </body>
 </html>
-
-
