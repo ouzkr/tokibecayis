@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Takas/Becayiş Sitesi</title>
+<title>Takas/Becayiş Sitesi (PARA TALEBİNDE BULUNMAYINIZ!!!)</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 <style>
 h1, p.subtitle {
@@ -78,6 +78,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
           <option value="ARNAVUTKÖY">ARNAVUTKÖY</option>
           <option value="BAŞAKŞEHİR">BAŞAKŞEHİR</option>
         </select>
+
         <label>Mahalle</label>
         <select id="mahalle" required>
           <option value="">Seçiniz</option>
@@ -90,6 +91,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
           <option>KAYABAŞI</option>
           <option>SAZLIBOSNA MEVKİ</option>
         </select>
+
         <label>Bölge</label>
         <select id="bolge" required>
           <option value="">Seçiniz</option>
@@ -104,13 +106,13 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
           <option>5</option><option>6</option><option>7</option><option>-</option>
         </select>
 
-        <label>Daire Fiyatı (TL)</label>
+        <label>Daire Fiyatı (₺)</label>
         <input type="text" id="fiyat" placeholder="Örn: 2.500.000" required oninput="this.value = formatPrice(this.value)" />
 
         <label>Net Metrekare (m²)</label>
         <input type="number" id="metrekare" placeholder="Örn: 85" min="50" max="200" required/>
 
-        <label>Taksit (TL)</label>
+        <label>Taksit (₺)</label>
         <input type="number" id="taksit" placeholder="Örn: 5000" min="1000" max="20000" required oninput="this.value=formatPrice(this.value)" />
 
         <label>Oda Sayısı</label>
@@ -130,7 +132,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
       </div>
 
       <!-- Sağ kolon — Talep Edilen -->
-      <div class="form-group" id="rightForm">
+      <div class.class="form-group" id="rightForm">
         <h3>Talep Edilen (Aranan Özellikler)</h3>
 
         <label>Talep Edilen İlçe</label>
@@ -252,6 +254,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
     const talep_odalar = Array.from(document.querySelectorAll('#talep_oda_grp input[type=checkbox]:checked')).map(c=>c.value);
     const talep_kat = document.getElementById('talep_kat').value;
   
+
     if(!ilce){ alert('İlçe seçiniz'); return; }
     if(!mahalle){ alert('Mahalle seçiniz'); return; }
     if(!bolge){ alert('Bölge seçiniz'); return; }
@@ -260,3 +263,60 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
     if(!metrekare){ alert('Metrekare giriniz'); return; }
     if(!taksit){ alert('Taksit giriniz'); return; }
     if(!oda){ alert('Oda sayısı seçiniz'); return; }
+    if(!kat){ alert('Kat seçiniz'); return; }
+    if(talep_ilceler.length === 0){ alert('En az bir Talep İlçe seçiniz'); return; }
+    if(talep_odalar.length === 0){ alert('En az bir Talep Oda Sayısı seçiniz'); return; }
+    if(!talep_kat){ alert('Talep Kat seçiniz'); return; }
+
+    if(fiyat < 2000000 || fiyat > 10000000){ alert('Daire fiyatı 2.000.000 - 10.000.000 arasında olmalı'); return; }
+    if(taksit < 1000 || taksit > 20000){ alert('Taksit 1.000 - 20.000 arasında olmalı'); return; }
+
+    const demand = {
+      ilce, mahalle, bolge, etap,
+      fiyat: Number(fiyat),
+      metrekare: Number(metrekare),
+      taksit: Number(taksit),
+      oda, kat,
+      whatsapp,
+      talep_ilceler, talep_odalar,
+      talep_kat,
+      createdAt: Date.now()
+    };
+
+    demandsRef.push(demand)
+      .then(()=>{
+        closeWarningModal();
+        alert('Talep oluşturuldu!');
+      })
+      .catch(err=>{
+        console.error(err);
+        alert('Kaydederken bir hata oluştu. Lütfen tekrar deneyin.');
+      });
+  }
+
+  // Talepleri Tabloya Çek (En üste ekle)
+  demandsRef.on('value', snapshot => {
+    const tbody = document.querySelector('#demandsTable tbody');
+    tbody.innerHTML = '';
+    snapshot.forEach(snap=>{
+      const d = snap.val();
+      const tr = document.createElement('tr');
+
+      const date = new Date(d.createdAt);
+      const dateStr = date.toLocaleDateString('tr-TR') + ' ' + date.toLocaleTimeString('tr-TR');
+
+      tr.innerHTML = `
+        <td>${dateStr}</td>
+        <td>${d.ilce || ''}</td><td>${d.mahalle || ''}</td><td>${d.bolge || ''}</td><td>${d.etap || ''}</td>
+        <td>${(d.fiyat || 0).toLocaleString()}</td><td>${(d.metrekare || 0)}</td><td>${(d.taksit || 0).toLocaleString()}</td>
+        <td>${d.oda || ''}</td><td>${d.kat || ''}</td>
+        <td><a class="whatsapp-link" href="https://wa.me/${d.whatsapp}" target="_blank">Mesaj Yaz</a></td>
+        <td>${(d.talep_ilceler || []).join(', ')}</td><td>${(d.talep_odalar || []).join(', ')}</td><td>${d.talep_kat || ''}</td>
+      `;
+      // En üste ekle
+      tbody.prepend(tr);
+    });
+  });
+  </script>
+</body>
+</html>
