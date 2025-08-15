@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Takas/Becayiş BİRBİRİNİZDEN PARA TALEBİNDE BULUNMAYINIZ!!!</title>
+<title>Takas/Becayiş Sitesi</title>
+<title>BİRBİRİNİZDEN PARA TALEBİNDE BULUNMAYINIZ!!!</title>  
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 <style>
 h1, p.subtitle {
@@ -63,7 +64,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
 </head>
 <body>
   <div class="container">
-    <h1>Takas/Becayiş BİRBİRİNİZDEN PARA TALEBİNDE BULUNMAYINIZ!!!</h1>
+    <h1>Takas/Becayiş Sitesi (PARA TALEBİNDE BULUNMAYINIZ!!!)</h1>
     <p class="subtitle">Bu platform karşılıklı fayda içindir. Tokide Devir Yoktur!!!! Becayiş Vardır!!!! dolandırıcılık riskine karşı dikkatli olunuz.</p>
 
     <div class="form-section">
@@ -78,7 +79,6 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
           <option value="ARNAVUTKÖY">ARNAVUTKÖY</option>
           <option value="BAŞAKŞEHİR">BAŞAKŞEHİR</option>
         </select>
-
         <label>Mahalle</label>
         <select id="mahalle" required>
           <option value="">Seçiniz</option>
@@ -91,7 +91,6 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
           <option>KAYABAŞI</option>
           <option>SAZLIBOSNA MEVKİ</option>
         </select>
-
         <label>Bölge</label>
         <select id="bolge" required>
           <option value="">Seçiniz</option>
@@ -106,13 +105,13 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
           <option>5</option><option>6</option><option>7</option><option>-</option>
         </select>
 
-        <label>Daire Fiyatı (₺)</label>
+        <label>Daire Fiyatı (TL)</label>
         <input type="text" id="fiyat" placeholder="Örn: 2.500.000" required oninput="this.value = formatPrice(this.value)" />
 
         <label>Net Metrekare (m²)</label>
         <input type="number" id="metrekare" placeholder="Örn: 85" min="50" max="200" required/>
 
-        <label>Taksit (₺)</label>
+        <label>Taksit (TL)</label>
         <input type="number" id="taksit" placeholder="Örn: 5000" min="1000" max="20000" required oninput="this.value=formatPrice(this.value)" />
 
         <label>Oda Sayısı</label>
@@ -152,6 +151,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
         <label>Talep Edilen Kat</label>
         <select id="talep_kat" required>
           <option value="">Seçiniz</option>
+          <option>fark etmez</option>
           <option>1.kat ve arakatlar</option>
           <option>Üst katlar</option>
         </select>
@@ -178,7 +178,7 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
       </table>
     </div>
 
-    <footer>Takas/Becayiş BİRBİRİNİZDEN PARA TALEBİNDE BULUNMAYINIZ!!!</footer>
+    <footer>Takas/Becayiş Sitesi (PARA TALEBİNDE BULUNMAYINIZ!!!)</footer>
   </div>
 
   <!-- Uyarı Modal -->
@@ -253,7 +253,6 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
     const talep_odalar = Array.from(document.querySelectorAll('#talep_oda_grp input[type=checkbox]:checked')).map(c=>c.value);
     const talep_kat = document.getElementById('talep_kat').value;
   
-
     if(!ilce){ alert('İlçe seçiniz'); return; }
     if(!mahalle){ alert('Mahalle seçiniz'); return; }
     if(!bolge){ alert('Bölge seçiniz'); return; }
@@ -319,3 +318,4 @@ footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:
   </script>
 </body>
 </html>
+
