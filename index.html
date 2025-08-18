@@ -1,322 +1,178 @@
-<!DOCTYPE HTML>
-<html lang="tr">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Takas/Becayiş Sitesi (PARA TALEBİNDE BULUNMAYINIZ!!!)</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-<style>
-h1, p.subtitle {
-  text-align: center;
-  width: 100%;
-}
-/* Stil */
-body{font-family:'Roboto',sans-serif;margin:0;background:linear-gradient(120deg,#1e3a8a,#7e22ce);color:#1f2937;min-height:100vh;display:flex;flex-direction:column;align-items:center}
-.container{max-width:1300px;margin:20px auto;padding:15px;background:#fff;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,.15);display:flex;flex-wrap:wrap;gap:20px;}
-h1{text-align:center;color:#1e3a8a;font-size:1.5em;margin-bottom:10px;letter-spacing:.5px;}
-p.subtitle{text-align:center;color:#4b5563;font-size:.9em;margin-bottom:20px;font-weight:400;}
-.form-section{display:flex;gap:20px;width:100%;flex-wrap:wrap;}
-.form-group{flex:1 1 45%;background:#f9fafb;padding:15px;border-radius:8px;border:1px solid #e5e7eb;transition:transform .3s ease,box-shadow .3s ease;}
-.form-group:hover{transform:translateY(-3px);box-shadow:0 5px 15px rgba(30,58,138,.2);}
-.form-group h3{color:#1e3a8a;font-size:1.2em;margin-bottom:10px;font-weight:700;}
-.form-group label{display:block;margin-bottom:5px;font-weight:600;color:#1f2937;font-size:.9em;}
-.form-group input,.form-group select{width:100%;padding:6px;margin-bottom:10px;border:1px solid #d1d5db;border-radius:5px;font-size:.85em;background:#fff;transition:border-color .3s ease,box-shadow .3s ease;}
-.form-group input:focus,.form-group select:focus{border-color:#1e3a8a;box-shadow:0 0 5px rgba(30,58,138,.3);outline:none;}
-.checkbox-group{display:flex;flex-direction:column;margin-bottom:10px;}
-.checkbox-group label{display:flex;align-items:center;text-align: center; margin-bottom:8px;font-size:.8em;color:#1f2937;}
-.checkbox-group input[type="checkbox"]{margin-right:8px;accent-color:#1e3a8a;transform:scale(1.1);}
-button{display:block;margin:20px auto;padding:10px 30px;background:#059669;color:#fff;border:none;border-radius:25px;font-size:1em;font-weight:600;cursor:pointer;transition:background .3s ease,transform .3s ease;}
-button:hover{background:#047857;transform:scale(1.05);}
-.demands-section{margin-top:20px;width:100%;}
-.demands-section h2{color:#1e3a8a;font-size:1.5em;text-align:center;margin-bottom:15px;}
-table{width:100%;border-collapse:separate;border-spacing:0;margin-top:10px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.1);}
-th,td{padding:8px;text-align:left;border-bottom:1px solid #e5e7eb;font-size:.75em;}
-th{background:linear-gradient(90deg,#1e3a8a,#7e22ce);color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
-tr:last-child td{border-bottom:none;}
-tr:nth-child(even){background:#f9fafb;}
-.whatsapp-link{color:#10b981;text-decoration:none;font-weight:600;padding:4px 8px;border-radius:5px;background:#ecfdf5;transition:background .3s ease,color .3s ease;}
-.whatsapp-link:hover{color:#059669;background:#d1fae5;}
-footer{text-align:center;margin-top:20px;padding:10px 0;color:#4b5563;font-size:.75em;background:#f9fafb;border-top:1px solid #e5e7eb;}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);justify-content:center;align-items:center;z-index:1000;}
-.modal-content{background:#fff;padding:20px;border-radius:10px;max-width:300px;width:90%;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,.2);}
-.modal-content h3{color:#dc2626;font-size:1.2em;margin-bottom:10px;}
-.modal-content p{color:#1f2937;font-size:.9em;margin-bottom:10px;}
-.modal-content button{margin:5px;padding:8px 20px;font-size:.9em;}
-.modal-content .confirm-btn{background:linear-gradient(90deg,#1e3a8a,#7e22ce);color:#fff;border:none;border-radius:8px;}
-.modal-content .confirm-btn:hover{background:linear-gradient(90deg,#1e40af,#6d28d9);}
-.modal-content .cancel-btn{background:#dc2626;color:#fff;border:none;border-radius:8px;}
-.modal-content .cancel-btn:hover{background:#b91c1c;}
-@media(max-width:768px){
-  .form-group{width:100%;}
-  h1{font-size:1.2em;}
-  p.subtitle{font-size:.8em;}
-  .form-group h3{font-size:1em;}
-  .form-group label{font-size:.8em;}
-  .form-group input,.form-group select{font-size:.75em;padding:6px;}
-  .checkbox-group label{font-size:.7em;}
-  .demands-section h2{font-size:1.2em;}
-  table{font-size:.65em;}
-  th,td{padding:6px;}
-  button{font-size:.9em;padding:8px 25px;}
-}
-</style>
-</head>
-<body>
-  <div class="container">
-    <h1>Takas/Becayiş Sitesi (PARA TALEBİNDE BULUNMAYINIZ!!!)</h1>
-    <p class="subtitle">Bu platform karşılıklı fayda içindir. Tokide Devir Yoktur!!!! Becayiş Vardır!!!! dolandırıcılık riskine karşı dikkatli olunuz.</p>
-
-    <div class="form-section">
-      <!-- Sol kolon — Hak Sahibi -->
-      <div class="form-group" id="leftForm">
-        <h3>Hak Sahibi (Mevcut Daire)</h3>
-        <label>İlçe</label>
-        <select id="ilce" required>
-          <option value="">Seçiniz</option>
-          <option value="TUZLA">TUZLA</option>
-          <option value="MALTEPE">MALTEPE</option>
-          <option value="ARNAVUTKÖY">ARNAVUTKÖY</option>
-          <option value="BAŞAKŞEHİR">BAŞAKŞEHİR</option>
-        </select>
-
-        <label>Mahalle</label>
-        <select id="mahalle" required>
-          <option value="">Seçiniz</option>
-          <option>AYDINLI</option>
-          <option>ORHANLI</option>
-          <option>AYDINLI KONAŞLI MEVKİİ</option>
-          <option>ATIŞOKULU</option>
-          <option>BAKLALI</option>
-          <option>TAŞOLUK</option>
-          <option>KAYABAŞI</option>
-          <option>SAZLIBOSNA MEVKİ</option>
-        </select>
-
-        <label>Bölge</label>
-        <select id="bolge" required>
-          <option value="">Seçiniz</option>
-          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
-          <option>10</option><option>11</option><option>BATI</option><option>-</option>
-        </select>
-
-        <label>Etap</label>
-        <select id="etap" required>
-          <option value="">Seçiniz</option>
-          <option>1</option><option>2</option><option>3</option><option>4</option>
-          <option>5</option><option>6</option><option>7</option><option>-</option>
-        </select>
-
-        <label>Daire Fiyatı (₺)</label>
-        <input type="text" id="fiyat" placeholder="Örn: 2.500.000" required oninput="this.value = formatPrice(this.value)" />
-
-        <label>Net Metrekare (m²)</label>
-        <input type="number" id="metrekare" placeholder="Örn: 85" min="50" max="200" required/>
-
-        <label>Taksit (₺)</label>
-        <input type="number" id="taksit" placeholder="Örn: 5000" min="1000" max="20000" required oninput="this.value=formatPrice(this.value)" />
-
-        <label>Oda Sayısı</label>
-        <select id="oda_sayisi" required>
-          <option value="">Seçiniz</option>
-          <option>2+1</option>
-          <option>3+1</option>
-        </select>
-
-        <label>Kat</label>
-        <select id="kat" required>
-          <option value="">Seçiniz</option>
-          <option>Bodrum</option><option>Zemin</option><option>Giriş</option>
-          <option>1.kat</option><option>2.kat</option><option>3.kat</option><option>4.kat</option><option>5.kat</option>
-          <option>6.kat</option><option>7.kat</option><option>8.kat</option><option>9.kat</option><option>10.kat</option>
-        </select>
-      </div>
-
-      <!-- Sağ kolon — Talep Edilen -->
-      <div class.class="form-group" id="rightForm">
-        <h3>Talep Edilen (Aranan Özellikler)</h3>
-
-        <label>Talep Edilen İlçe</label>
-        <div class="checkbox-group" id="talep_ilce_grp">
-          <label><input type="checkbox" value="TUZLA" /> TUZLA</label>
-          <label><input type="checkbox" value="MALTEPE" /> MALTEPE</label>
-          <label><input type="checkbox" value="ARNAVUTKÖY" /> ARNAVUTKÖY</label>
-          <label><input type="checkbox" value="BAŞAKŞEHİR" /> BAŞAKŞEHİR</label>
+ mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold">Tasarım</h2>
+          <p className="mt-4 text-gray-600 max-w-3xl">
+            Müşteri şartnamelerine uygun tasarım, üretilebilirlik analizi, malzeme seçimi ve doğrulama süreçlerini kapsayan bütüncül bir mühendislik yaklaşımı benimsiyoruz.
+          </p>
+          <div className="mt-8 grid md:grid-cols-3 gap-4">
+            {["CAD/CAM (SolidWorks, NX)", "DFM/DFA Analizi", "Tolerans & GD&T"].map((t, i) => (
+              <Card key={i} className="rounded-2xl">
+                <CardHeader>
+                  <CardTitle className="text-lg">{t}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-gray-600">Projenize özel tasarım ve imalat prosesi planlama.</CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <label>Talep Edilen Oda Sayısı</label>
-        <div class="checkbox-group" id="talep_oda_grp">
-          <label><input type="checkbox" value="2+1" /> 2+1</label>
-          <label><input type="checkbox" value="3+1" /> 3+1</label>
+      {/* Ürünlerimiz */}
+      <section id="urunler" className="py-16 md:py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold">Ürünlerimiz</h2>
+          <p className="mt-4 text-gray-600 max-w-3xl">Özel makina bileşenleri, fikstürler, kalıp parçaları ve müşteri talepli yedek parçalar.</p>
+          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { t: "Fikstür Çözümleri", d: "Kaynak, montaj ve ölçüm fikstürleri" },
+              { t: "Kalıp Parçaları", d: "Enjeksiyon ve sac kalıp bileşenleri" },
+              { t: "Özel Şaft & Gövde", d: "Hassas tornalama ve freze" },
+              { t: "Makina Yedekleri", d: "OEM'e alternatif yüksek kalite" },
+              { t: "Prototip İmalat", d: "Hızlı dönüş ve doğrulama" },
+              { t: "Seri Parça", d: "İzlenebilir süreç yönetimi" },
+            ].map((p, i) => (
+              <Card key={i} className="rounded-2xl">
+                <CardHeader>
+                  <CardTitle className="text-lg">{p.t}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-gray-600">{p.d}</CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <label>Talep Edilen Kat</label>
-        <select id="talep_kat" required>
-          <option value="">Seçiniz</option>
-          <option>fark etmez</option>
-          <option>1.kat ve arakatlar</option>
-          <option>Üst katlar</option>
-        </select>
+      {/* Üretim */}
+      <section id="uretim" className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold">Üretim</h2>
+          <div className="mt-6 grid md:grid-cols-3 gap-4">
+            {[
+              { i: <Hammer className="h-6 w-6" />, t: "CNC Freze", d: "3-5 eksen işleme" },
+              { i: <Hammer className="h-6 w-6" />, t: "CNC Torna", d: "Çubuk beslemeli seri üretim" },
+              { i: <Hammer className="h-6 w-6" />, t: "Taşlama & Honlama", d: "Mikron hassasiyet" },
+              { i: <Hammer className="h-6 w-6" />, t: "Isıl İşlem & Kaplama", d: "Partner ağımız ile" },
+              { i: <Hammer className="h-6 w-6" />, t: "Ölçüm & CMM", d: "Raporlama ve izlenebilirlik" },
+              { i: <Hammer className="h-6 w-6" />, t: "Montaj", d: "Alt montaj ve test" },
+            ].map((s, i) => (
+              <Card key={i} className="rounded-2xl">
+                <CardHeader className="flex-row items-center gap-3">
+                  <div className="p-2 rounded-xl bg-gray-100 border">{s.i}</div>
+                  <CardTitle className="text-lg">{s.t}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-gray-600">{s.d}</CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <label>WhatsApp No</label>
-        <input type="text" id="whatsapp" placeholder="Örn: 905xxxxxxxxx" required/>
+      {/* Makina Parkı */}
+      <section id="makina-parki" className="py-16 md:py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold">Makina Parkı</h2>
+          <p className="mt-4 text-gray-600">Temsili liste – kendi makinalarınızı buraya ekleyin.</p>
+          <div className="mt-6 grid gap-3">
+            {[
+              { ad: "5 Eksen İşleme Merkezi", kod: "DMG Mori DMU 75", strok: "750×650×560 mm", adet: 1 },
+              { ad: "3 Eksen CNC Freze", kod: "Makino F5", strok: "900×500×450 mm", adet: 2 },
+              { ad: "CNC Torna", kod: "Mazak QTN 250", strok: "Ø300×600 mm", adet: 2 },
+              { ad: "Yüzey Taşlama", kod: "Okamoto", strok: "600×300 mm", adet: 1 },
+              { ad: "CMM Ölçüm", kod: "Mitutoyo Crysta", strok: "700×700×600 mm", adet: 1 },
+            ].map((m, i) => (
+              <div key={i} className="grid grid-cols-2 md:grid-cols-5 gap-2 p-4 rounded-2xl bg-white border">
+                <div className="font-semibold">{m.ad}</div>
+                <div className="text-gray-600">{m.kod}</div>
+                <div className="text-gray-600">Strok: {m.strok}</div>
+                <div className="text-gray-600">Adet: {m.adet}</div>
+                <div className="text-gray-600">Durum: Aktif</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Katalog */}
+      <section id="katalog" className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold flex items-center gap-2"><FileText className="h-6 w-6"/>Katalog</h2>
+          <p className="mt-4 text-gray-600 max-w-3xl">Kurumsal tanıtım ve ürün örneklerinden oluşan PDF kataloğumuzu indirin.</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <Button className="rounded-2xl" onClick={() => alert('Katalog dosyasını buraya bağlayın: /katalog/salman-otomotiv.pdf')}>PDF İndir</Button>
+            <Button variant="secondary" className="rounded-2xl" onClick={() => scrollTo('iletisim')}>Teklif İste</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* İletişim */}
+      <section id="iletisim" className="py-16 md:py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold">İletişim</h2>
+          <div className="mt-6 grid md:grid-cols-2 gap-6">
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle>Hızlı Mesaj Gönderin</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form className="grid gap-3">
+                  <div className="grid gap-1">
+                    <label className="text-sm text-gray-600">Ad Soyad</label>
+                    <Input placeholder="Adınız Soyadınız" />
+                  </div>
+                  <div className="grid gap-1">
+                    <label className="text-sm text-gray-600">E-Posta</label>
+                    <Input type="email" placeholder="ornek@eposta.com" />
+                  </div>
+                  <div className="grid gap-1">
+                    <label className="text-sm text-gray-600">Mesajınız</label>
+                    <Textarea placeholder="Kısa mesajınızı yazın" rows={5} />
+                  </div>
+                  <Button className="rounded-2xl">Gönder</Button>
+                </form>
+              </CardContent>
+            </Card>
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle>Adres & İletişim</CardTitle>
+              </CardHeader>
+              <CardContent className="grid gap-3 text-gray-700">
+                <div className="flex items-start gap-2"><MapPin className="h-5 w-5 mt-0.5"/><span>Sultan Orhan Mah. Hasköy Sanayi Sitesi 13 B Blok No: 8 41400 Gebze / KOCAELİ / TÜRKİYE</span></div>
+                <div className="flex items-center gap-2"><Phone className="h-5 w-5"/><a href="tel:+902626444593" className="underline underline-offset-4">0 262 644 45 93</a></div>
+                <div className="flex items-center gap-2"><Fax className="h-5 w-5"/><span>0 262 644 45 97</span></div>
+                <div className="flex items-center gap-2"><Mail className="h-5 w-5"/><a href="mailto:salman@salmanotomotiv.com" className="underline underline-offset-4">salman@salmanotomotiv.com</a></div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Altbilgi */}
+      <footer className="py-10 border-t bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="text-sm text-gray-600">© {new Date().getFullYear()} Salman Otomotiv. Tüm hakları saklıdır.</div>
+          <div className="text-sm text-gray-500">CNC • Makina • Fikstür • Kalıp • Yedek Parça</div>
+        </div>
+      </footer>
+
+      {/* Sağ Alt Bilgi Kartı (Talep edilen sabit kutu) */}
+      <div className="fixed right-4 bottom-4 z-50 max-w-xs w-[92vw] sm:w-96">
+        <div className="rounded-2xl shadow-xl border bg-white p-4">
+          <div className="flex items-center gap-2 text-gray-900 font-semibold">
+            <MapPin className="h-4 w-4"/> Adres & İletişim
+          </div>
+          <div className="mt-2 text-sm text-gray-700">
+            Sultan Orhan Mah. Hasköy Sanayi Sitesi 13 B Blok No: 8 41400 Gebze / KOCAELİ / TÜRKİYE
+          </div>
+          <div className="mt-2 grid gap-1 text-sm">
+            <div className="flex items-center gap-2"><Phone className="h-4 w-4"/><a href="tel:+902626444593" className="hover:underline">0 262 644 45 93</a></div>
+            <div className="flex items-center gap-2"><Fax className="h-4 w-4"/>0 262 644 45 97</div>
+            <div className="flex items-center gap-2"><Mail className="h-4 w-4"/><a href="mailto:salman@salmanotomotiv.com" className="hover:underline">salman@salmanotomotiv.com</a></div>
+          </div>
+          <div className="mt-3 flex gap-2">
+            <a href="tel:+902626444593" className="flex-1"><Button className="w-full rounded-xl">Ara</Button></a>
+            <a href="mailto:salman@salmanotomotiv.com" className="flex-1"><Button variant="secondary" className="w-full rounded-xl">E-Posta</Button></a>
+          </div>
+        </div>
       </div>
     </div>
-
-    <button onclick="showWarningModal()">Talep Oluştur</button>
-
-    <div class="demands-section">
-      <h2>Oluşturulan Talepler</h2>
-      <table id="demandsTable">
-        <thead>
-          <tr>
-            <th>Tarih / Saat</th>
-            <th>İlçe</th><th>Mahalle</th><th>Bölge</th><th>Etap</th>
-            <th>Daire Fiyatı</th><th>Metrekare</th><th>Taksit</th><th>Oda Sayısı</th><th>Kat</th><th>WhatsApp</th>
-            <th>Talep İlçe</th><th>Talep Oda Sayısı</th><th>Talep Kat</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-
-    <footer>Takas/Becayiş Sitesi (PARA TALEBİNDE BULUNMAYINIZ!!!)</footer>
-  </div>
-
-  <!-- Uyarı Modal -->
-  <div class="modal" id="warningModal">
-    <div class="modal-content">
-      <h3>Dolandırıcılık Uyarısı</h3>
-      <p>Bu platform üzerinden yapılan işlemler sırasında dolandırıcılık riskine karşı dikkatli olunuz. Bilgilerinizi paylaşmadan önce karşı tarafın güvenilirliğini doğrulayın. Yapılan işlemlerden dolayı herhangi bir sorumluluk kabul edilmez.</p>
-      <button class="confirm-btn" onclick="createDemand()">Kabul Ediyorum</button>
-      <button class="cancel-btn" onclick="closeWarningModal()">İptal</button>
-    </div>
-  </div>
-
-  <!-- Firebase SDK (compat) -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-
-  <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDMHk5EugSyBbFioJrEMqL8OcuuFgxCguU",
-    authDomain: "toki-8eb5b.firebaseapp.com",
-    databaseURL: "https://toki-8eb5b-default-rtdb.firebaseio.com",
-    projectId: "toki-8eb5b",
-    storageBucket: "toki-8eb5b.appspot.com",
-    messagingSenderId: "267049783849",
-    appId: "1:267049783849:web:2fa3f0b70a98e230f8c238"
-  };
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-  const db = firebase.database();
-  const demandsRef = db.ref("demands");
-
-  // Yardımcı Fonksiyonlar
-  function showWarningModal(){ document.getElementById('warningModal').style.display='flex'; }
-  function closeWarningModal(){ document.getElementById('warningModal').style.display='none'; }
-  function onlyDigits(s){ return (s||"").toString().replace(/\D/g,''); }
-  function formatPrice(value){
-    if(!value) return '';
-    let num = onlyDigits(value);
-    num = Math.max(0, Math.min(10000000000, Number(num))).toString();
-    return num.replace(/\B(?=(\d{3})+(?!\d))/g,'.');
-  }
-
-  function sanitizeWhatsapp(v){
-    let num = onlyDigits(v);
-    if(!num.startsWith('905')){
-        num = '905' + num;
-    }
-    if(num.length !== 12){
-        alert('WhatsApp numarası 12 rakam olmalı (başında 905 dahil). Lütfen düzeltin.');
-        return null;
-    }
-    return num;
-  }
-
-  // Talep Oluştur
-  function createDemand(){
-    const ilce = document.getElementById('ilce').value;
-    const mahalle = document.getElementById('mahalle').value;
-    const bolge = document.getElementById('bolge').value;
-    const etap = document.getElementById('etap').value;
-    const fiyat = onlyDigits(document.getElementById('fiyat').value);
-    const metrekare = document.getElementById('metrekare').value;
-    const taksit = onlyDigits(document.getElementById('taksit').value);
-    const oda = document.getElementById('oda_sayisi').value;
-    const kat = document.getElementById('kat').value;
-
-    const whatsapp = sanitizeWhatsapp(document.getElementById('whatsapp').value);
-    if(!whatsapp) return;
-
-    const talep_ilceler = Array.from(document.querySelectorAll('#talep_ilce_grp input[type=checkbox]:checked')).map(c=>c.value);
-    const talep_odalar = Array.from(document.querySelectorAll('#talep_oda_grp input[type=checkbox]:checked')).map(c=>c.value);
-    const talep_kat = document.getElementById('talep_kat').value;
-  
-
-    if(!ilce){ alert('İlçe seçiniz'); return; }
-    if(!mahalle){ alert('Mahalle seçiniz'); return; }
-    if(!bolge){ alert('Bölge seçiniz'); return; }
-    if(!etap){ alert('Etap seçiniz'); return; }
-    if(!fiyat){ alert('Daire fiyatı zorunludur'); return; }
-    if(!metrekare){ alert('Metrekare giriniz'); return; }
-    if(!taksit){ alert('Taksit giriniz'); return; }
-    if(!oda){ alert('Oda sayısı seçiniz'); return; }
-    if(!kat){ alert('Kat seçiniz'); return; }
-    if(talep_ilceler.length === 0){ alert('En az bir Talep İlçe seçiniz'); return; }
-    if(talep_odalar.length === 0){ alert('En az bir Talep Oda Sayısı seçiniz'); return; }
-    if(!talep_kat){ alert('Talep Kat seçiniz'); return; }
-
-    if(fiyat < 2000000 || fiyat > 10000000){ alert('Daire fiyatı 2.000.000 - 10.000.000 arasında olmalı'); return; }
-    if(taksit < 1000 || taksit > 20000){ alert('Taksit 1.000 - 20.000 arasında olmalı'); return; }
-
-    const demand = {
-      ilce, mahalle, bolge, etap,
-      fiyat: Number(fiyat),
-      metrekare: Number(metrekare),
-      taksit: Number(taksit),
-      oda, kat,
-      whatsapp,
-      talep_ilceler, talep_odalar,
-      talep_kat,
-      createdAt: Date.now()
-    };
-
-    demandsRef.push(demand)
-      .then(()=>{
-        closeWarningModal();
-        alert('Talep oluşturuldu!');
-      })
-      .catch(err=>{
-        console.error(err);
-        alert('Kaydederken bir hata oluştu. Lütfen tekrar deneyin.');
-      });
-  }
-
-  // Talepleri Tabloya Çek (En üste ekle)
-  demandsRef.on('value', snapshot => {
-    const tbody = document.querySelector('#demandsTable tbody');
-    tbody.innerHTML = '';
-    snapshot.forEach(snap=>{
-      const d = snap.val();
-      const tr = document.createElement('tr');
-
-      const date = new Date(d.createdAt);
-      const dateStr = date.toLocaleDateString('tr-TR') + ' ' + date.toLocaleTimeString('tr-TR');
-
-      tr.innerHTML = `
-        <td>${dateStr}</td>
-        <td>${d.ilce || ''}</td><td>${d.mahalle || ''}</td><td>${d.bolge || ''}</td><td>${d.etap || ''}</td>
-        <td>${(d.fiyat || 0).toLocaleString()}</td><td>${(d.metrekare || 0)}</td><td>${(d.taksit || 0).toLocaleString()}</td>
-        <td>${d.oda || ''}</td><td>${d.kat || ''}</td>
-        <td><a class="whatsapp-link" href="https://wa.me/${d.whatsapp}" target="_blank">Mesaj Yaz</a></td>
-        <td>${(d.talep_ilceler || []).join(', ')}</td><td>${(d.talep_odalar || []).join(', ')}</td><td>${d.talep_kat || ''}</td>
-      `;
-      // En üste ekle
-      tbody.prepend(tr);
-    });
-  });
-  </script>
-</body>
-</html>
+  );
+}
